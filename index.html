@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Mover Box</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.MoverBoxes.js"></script>
+    <style type="text/css">
+        .MoverBox
+        {
+            margin-top: 20px;
+            width: 300px;
+            padding: 5px;
+        }
+        
+        #info
+        {
+            width:700px;
+            border:solid 1px #000;
+        }
+        #info tr td, #info tr th
+        {
+            border:solid 1px #000;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //This array will hold the values in the unassigned listbox
+            var dataLeft = [];
+            dataLeft.push("1, Unassigned Value One");
+            dataLeft.push("2, Unassigned Value Two");
+            dataLeft.push("3, Unassigned Value Three");
+
+            //this array will contain the data in the assigned list
+            var dataRight = [];
+            dataRight.push("4, Assigned Value One");
+            dataRight.push("5, Assigned Value Two");
+
+            /*
+            //Options:
+            dataleft: The data in left side listbox
+            dataright: The data in right side listbox
+            size: the height of the boxes
+            */
+            $('#demo').MoverBoxes({ 'dataleft': dataLeft, 'dataright': dataRight, size: 20 });
+
+
+
+            //get the selected values so we can update the database or whatever.
+            $('#GetSelected').click(function () {
+                //clear out old selected
+                $('#SelectedItems').html('');
+                var selectedData = $('#demo').data('MoverBoxes').SelectedValues();
+
+                //for each element in the array we will add to the listbox.
+                for (var i in selectedData) {
+                    var li_item = document.createElement("li");
+                    $(li_item).html(selectedData[i])
+                    $('#SelectedItems').append(li_item);
+                }
+
+            });
+
+
+
+        });
+
+
+      
+    </script>
+</head>
+<body>
+    <div id="demo">
+    </div>
+    <input type="button" id="GetSelected" value="Get Selected Items" />
+    <div>
+        <h3>
+            Selected Items</h3>
+        <ul id="SelectedItems">
+        </ul>
+    </div>
+    <h1>
+        Documentation</h1>
+    <table id="info">
+        <thead>
+            <tr>
+                <th>
+                    Option
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    dataleft
+                </td>
+                <td>
+                    Array: The items to be displayed in the left side listbox.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    dataright
+                </td>
+                <td>
+                    Array: The items to be displayed in the right side listbox.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    size
+                </td>
+                <td>
+                    int: controls the height of the boxes
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
