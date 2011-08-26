@@ -8,10 +8,8 @@
             // if your plugin is event-driven, you may provide callback capabilities for its events.
             // execute these functions before or after events of your plugin, so that users may customize
             // those particular events without changing the plugin's code
-            onFoo: function () { }
+          
         }
-
-
 
         var Moverhtml = function (dataleft, dataright) {
 
@@ -125,18 +123,6 @@
             //add to dom
             $(element).html(myMoverBox.Moverhtml);
 
-
-            //add class so we know what is selected.
-            //            $('.MoverBox option').live('click', function () {
-            //                if ($(this).hasClass('selected')) {
-            //                    $(this).removeClass('selected');
-            //                }
-            //                else {
-            //                    $(this).addClass('selected');
-            //                }
-
-            //            });
-
             $('#moveLeft').live('click', function () {
                 moveLeftToright();
             });
@@ -145,8 +131,6 @@
                 moveRightToleft();
 
             });
-
-
 
         }
 
@@ -175,7 +159,6 @@
             return values;
 
         }
-
 
         //private
         var moveLeftToright = function () {
@@ -212,10 +195,8 @@
 
         // iterate through the DOM elements we are attaching the plugin to
         return this.each(function () {
-
             // if plugin has not already been attached to the element
             if (undefined == $(this).data('MoverBoxes')) {
-
                 // create a new instance of the plugin
                 // pass the DOM element and the user-provided options as arguments
                 var plugin = new $.MoverBoxes(this, options);
