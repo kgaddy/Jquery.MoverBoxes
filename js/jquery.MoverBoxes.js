@@ -160,7 +160,7 @@
 
         }
 
-        //private
+
         var moveLeftToright = function () {
             $('#selectorTwo option').each(function (index) {
                 if ($(this)[0].selected) {

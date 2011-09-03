@@ -61,6 +61,20 @@
 
             });
 
+            $('#GetUnSelected').click(function () {
+                //clear out old 
+                $('#SelectedItems').html('');
+                var selectedData = $('#demo').data('MoverBoxes').NotSelectedValues();
+
+                //for each element in the array we will add to the listbox.
+                for (var i in selectedData) {
+                    var li_item = document.createElement("li");
+                    $(li_item).html(selectedData[i])
+                    $('#SelectedItems').append(li_item);
+                }
+
+            });
+
 
 
         });
@@ -73,6 +87,7 @@
     <div id="demo">
     </div>
     <input type="button" id="GetSelected" value="Get Selected Items" />
+    <input type="button" id="GetUnSelected" value="Get Unselected Items" />
     <div>
         <h3>
             Selected Items</h3>
