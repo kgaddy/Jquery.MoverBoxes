@@ -21,6 +21,21 @@
         {
             border:solid 1px #000;
         }
+
+        body{
+            width:960px;
+            margin-left:auto;
+            margin-right:auto;
+            border:solid 1px #ccc;
+            padding-left:20px;
+        }
+        #header span{
+            font-size:2em;
+        }
+        code{
+            color:blue;
+        }
+
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -72,11 +87,7 @@
                     $(li_item).html(selectedData[i])
                     $('#SelectedItems').append(li_item);
                 }
-
             });
-
-
-
         });
 
 
@@ -84,18 +95,87 @@
     </script>
 </head>
 <body>
+<div id="header">
+    <span><a href="http://kgaddy.com">Kgaddy.com</a></span>
+</div>
+<h1>jQuery Plugin: List Mover Box</h1>
+<p>This is a very basic list box.</p>
     <div id="demo">
     </div>
     <input type="button" id="GetSelected" value="Get Selected Items" />
     <input type="button" id="GetUnSelected" value="Get Unselected Items" />
     <div>
         <h3>
-            Selected Items</h3>
+            Selected Items:</h3>
         <ul id="SelectedItems">
         </ul>
     </div>
-    <h1>
-        Documentation</h1>
+    <h2>
+        Documentation</h2>
+        <a href="test/funcunit.html">funcunit tests</a>
+        <h3>javascript</h3>
+          <code>
+            <pre>
+          $(document).ready(function () {
+
+            //This array will hold the values in the unassigned listbox
+            var dataLeft = [];
+            dataLeft.push(&quot;1, Unassigned Value One&quot;);
+            dataLeft.push(&quot;2, Unassigned Value Two&quot;);
+            dataLeft.push(&quot;3, Unassigned Value Three&quot;);
+
+            //this array will contain the data in the assigned list
+            var dataRight = [];
+            dataRight.push(&quot;4, Assigned Value One&quot;);
+            dataRight.push(&quot;5, Assigned Value Two&quot;);
+
+            /*
+            //Options:
+            dataleft: The data in left side listbox
+            dataright: The data in right side listbox
+            size: the height of the boxes
+            */
+            $(&#39;#demo&#39;).MoverBoxes({ &#39;dataleft&#39;: dataLeft, &#39;dataright&#39;: dataRight, size: 20 });
+
+
+
+            //get the selected values so we can update the database or whatever.
+            $(&#39;#GetSelected&#39;).click(function () {
+                //clear out old selected
+                $(&#39;#SelectedItems&#39;).html(&#39;&#39;);
+                var selectedData = $(&#39;#demo&#39;).data(&#39;MoverBoxes&#39;).SelectedValues();
+
+                //for each element in the array we will add to the listbox.
+                for (var i in selectedData) {
+                    var li_item = document.createElement(&quot;li&quot;);
+                    $(li_item).html(selectedData[i])
+                    $(&#39;#SelectedItems&#39;).append(li_item);
+                }
+
+            });
+
+            $(&#39;#GetUnSelected&#39;).click(function () {
+                //clear out old 
+                $(&#39;#SelectedItems&#39;).html(&#39;&#39;);
+                var selectedData = $(&#39;#demo&#39;).data(&#39;MoverBoxes&#39;).NotSelectedValues();
+
+                //for each element in the array we will add to the listbox.
+                for (var i in selectedData) {
+                    var li_item = document.createElement(&quot;li&quot;);
+                    $(li_item).html(selectedData[i])
+                    $(&#39;#SelectedItems&#39;).append(li_item);
+                }
+            });
+        });
+
+            </pre>
+        </code>
+        <h3>html</h3>
+        <code>
+            <pre>
+             &lt;div id=&quot;demo&quot;&gt;&lt;/div&gt;
+            </pre>
+        </code>
     <table id="info">
         <thead>
             <tr>
