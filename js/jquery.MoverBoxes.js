@@ -11,7 +11,7 @@
           
         }
 
-        var Moverhtml = function (dataleft, dataright) {
+        var Moverhtml = function (dataleft, dataright,leftLabel, rightLabel) {
 
             //main toobar div.
             var moverDIV = document.createElement("div");
@@ -24,6 +24,18 @@
 
             var tableTR = document.createElement("tr");
             var tableTDOne = document.createElement("td");
+
+
+            if(leftLabel){
+                console.log('yes');
+                var leftSpan = document.createElement("span");
+                $(leftSpan).addClass("MoverBox-label");
+                $(leftSpan).addClass("leftBox-label");
+                $(leftSpan).html(leftLabel);
+                tableTDOne.appendChild(leftSpan);
+
+            }
+
             var tableTDSelect = document.createElement("select");
             $(tableTDSelect).attr("id", "selectorOne");
             $(tableTDSelect).attr("name", "selectorOne");
@@ -67,9 +79,14 @@
             tableTDTwo.appendChild(inputTwo);
             tableTR.appendChild(tableTDTwo);
 
-
-
             var tableTDThree = document.createElement("td");
+            if(rightLabel){
+                var rightSpan = document.createElement("span");
+                $(rightSpan).addClass("MoverBox-label");
+                $(rightSpan).addClass("rightBox-label");
+                $(rightSpan).html(rightLabel);
+                tableTDThree.appendChild(rightSpan);
+            }
             var tableTDSelectTwo = document.createElement("select");
             $(tableTDSelectTwo).attr("id", "selectorTwo");
             $(tableTDSelectTwo).addClass("MoverBoxRight");
@@ -118,7 +135,7 @@
 
             // the plugin's final properties are the merged default and user-provided options (if any)
             plugin.settings = $.extend({}, defaults, options);
-            var myMoverBox = new Moverhtml(options.dataleft, options.dataright);
+            var myMoverBox = new Moverhtml(options.dataleft, options.dataright, options.leftLabel,options.rightLabel);
             
             //add to dom
             $(element).html(myMoverBox.Moverhtml);

@@ -7,7 +7,7 @@
     <style type="text/css">
         .MoverBox
         {
-            margin-top: 20px;
+            margin-top: 5px;
             width: 300px;
             padding: 5px;
         }
@@ -35,6 +35,10 @@
         code{
             color:blue;
         }
+        .MoverBox-label{
+            display:block;
+            font-weight:bold;
+        }
 
     </style>
     <script type="text/javascript">
@@ -57,7 +61,7 @@
             dataright: The data in right side listbox
             size: the height of the boxes
             */
-            $('#demo').MoverBoxes({ 'dataleft': dataLeft, 'dataright': dataRight, size: 20 });
+            $('#demo').MoverBoxes({ 'dataleft': dataLeft, 'dataright': dataRight, size: 20,'leftLabel':"Unassigned", 'rightLabel':"Assigned" });
 
 
 
@@ -135,7 +139,7 @@
             dataright: The data in right side listbox
             size: the height of the boxes
             */
-            $(&#39;#demo&#39;).MoverBoxes({ &#39;dataleft&#39;: dataLeft, &#39;dataright&#39;: dataRight, size: 20 });
+            $(&#39;#demo&#39;).MoverBoxes({ &#39;dataleft&#39;: dataLeft, &#39;dataright&#39;: dataRight, &#39;size&#39;: 20,&#39;leftLabel&#39;:"Unassigned", &#39;rightLabel&#39;:"Assigned"  });
 
 
 
@@ -209,7 +213,23 @@
                     size
                 </td>
                 <td>
-                    int: controls the height of the boxes
+                    int: controls the height of the boxes.
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    leftLabel
+                </td>
+                <td>
+                    string: The label at the top of the left box.
+                </td>
+            </tr>
+              <tr>
+                <td>
+                    rightLabel
+                </td>
+                <td>
+                    string: The label at the top of the right box.
                 </td>
             </tr>
         </tbody>

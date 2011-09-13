@@ -6,6 +6,18 @@ module("index.html",{
         
     }
 })
+test('Labels are correct', function(){
+    S('#leftBox-label').exists(function(){
+        ok(S('#leftBox-label')==='Unassigned');
+    });
+      S('#rightBox-label').exists(function(){
+        ok(S('#rightBox-label')==='Assigned');
+    });
+});
+
+
+
+
 test("Move stuff around and test", function(){
     S("#optId_3").click();
     S("#moveRight").click();
@@ -24,8 +36,6 @@ test("Move stuff around and test", function(){
 
     S("#GetUnSelected").click(); 
     S('#SelectedItems').exists(function(){
-      
-   
         var one = S('#SelectedItems li:first-child').html();
         var two = S('#SelectedItems li:last-child').html();
         var three = S('#SelectedItems li:nth-child(2) ').html();
@@ -33,5 +43,9 @@ test("Move stuff around and test", function(){
         ok(two==='4', 'Second value should be 4:' + two);
         ok(three==='2', 'Thrird value should be 2:' + three);
     });
+
+
+
+
 })
 
