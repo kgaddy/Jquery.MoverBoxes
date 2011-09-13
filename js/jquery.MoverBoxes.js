@@ -27,7 +27,7 @@
 
 
             if(leftLabel){
-                console.log('yes');
+         
                 var leftSpan = document.createElement("span");
                 $(leftSpan).addClass("MoverBox-label");
                 $(leftSpan).addClass("leftBox-label");
