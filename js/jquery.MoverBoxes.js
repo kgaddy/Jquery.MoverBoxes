@@ -79,6 +79,24 @@
             tableTDTwo.appendChild(inputTwo);
             tableTR.appendChild(tableTDTwo);
 
+
+            brAllOne = document.createElement("br");
+            tableTDTwo.appendChild(brAllOne);
+            var inputTwoAll = document.createElement("input");
+            $(inputTwoAll).attr("type", "button");
+            $(inputTwoAll).attr("value", "<<");
+            $(inputTwoAll).attr('id', 'moveLeftAll');
+            tableTDTwo.appendChild(inputTwoAll);
+
+
+            brAllTwp = document.createElement("br");
+            tableTDTwo.appendChild(brAllTwp);
+            var inputThreeAll = document.createElement("input");
+            $(inputThreeAll).attr("type", "button");
+            $(inputThreeAll).attr("value", ">>");
+            $(inputThreeAll).attr('id', 'moveRightAll');
+            tableTDTwo.appendChild(inputThreeAll);
+
             var tableTDThree = document.createElement("td");
             if(rightLabel){
                 var rightSpan = document.createElement("span");
@@ -146,9 +164,14 @@
 
             $('#moveRight').live('click', function () {
                 moveRightToleft();
-
             });
 
+            $('#moveRightAll').live('click', function () {
+                movAllRightToleft();
+            });
+           $('#moveLeftAll').live('click', function () {
+                moveAllLeftToRight();
+            });
         }
 
         // public methods
@@ -177,6 +200,22 @@
 
         }
 
+        var moveAllLeftToRight = function(){
+            $('#selectorTwo option').each(function (index) {
+                $(this).remove();
+                var that = $(this);
+                $(that).removeClass('selected');
+                $('#selectorOne').append(that); 
+            });
+        }
+        var movAllRightToleft = function () {
+            $('#selectorOne option').each(function (index) {
+                $(this).remove();
+                var that = $(this);
+                $(that).removeClass('selected');
+                $('#selectorTwo').append(that);
+            });
+        }
 
         var moveLeftToright = function () {
             $('#selectorTwo option').each(function (index) {
