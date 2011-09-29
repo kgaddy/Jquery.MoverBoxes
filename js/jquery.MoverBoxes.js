@@ -1,4 +1,3 @@
-
 (function ($) {
     $.MoverBoxes = function (element, options) {
         // plugin's default options
@@ -11,7 +10,7 @@
           
         }
 
-        var Moverhtml = function (dataleft, dataright,leftLabel, rightLabel) {
+        var Moverhtml = function (dataleft, dataright,leftLabel, rightLabel, callback) {
 
             //main toobar div.
             var moverDIV = document.createElement("div");
@@ -79,6 +78,24 @@
             tableTDTwo.appendChild(inputTwo);
             tableTR.appendChild(tableTDTwo);
 
+
+            brAllOne = document.createElement("br");
+            tableTDTwo.appendChild(brAllOne);
+            var inputTwoAll = document.createElement("input");
+            $(inputTwoAll).attr("type", "button");
+            $(inputTwoAll).attr("value", "<<");
+            $(inputTwoAll).attr('id', 'moveLeftAll');
+            tableTDTwo.appendChild(inputTwoAll);
+
+
+            brAllTwp = document.createElement("br");
+            tableTDTwo.appendChild(brAllTwp);
+            var inputThreeAll = document.createElement("input");
+            $(inputThreeAll).attr("type", "button");
+            $(inputThreeAll).attr("value", ">>");
+            $(inputThreeAll).attr('id', 'moveRightAll');
+            tableTDTwo.appendChild(inputThreeAll);
+
             var tableTDThree = document.createElement("td");
             if(rightLabel){
                 var rightSpan = document.createElement("span");
@@ -112,7 +129,11 @@
             moverTableTbody.appendChild(tableTR);
             movertable.appendChild(moverTableTbody);
             moverDIV.appendChild(movertable);
+            if(callback!==undefined){
+                callback();
+            }
             this.Moverhtml = moverDIV;
+
 
         }
 
@@ -135,7 +156,12 @@
 
             // the plugin's final properties are the merged default and user-provided options (if any)
             plugin.settings = $.extend({}, defaults, options);
-            var myMoverBox = new Moverhtml(options.dataleft, options.dataright, options.leftLabel,options.rightLabel);
+            var callBack;
+            if(options.callback!==undefined){
+                callBack=options.callback;
+            }
+      
+            var myMoverBox = new Moverhtml(options.dataleft, options.dataright, options.leftLabel,options.rightLabel,callBack );
             
             //add to dom
             $(element).html(myMoverBox.Moverhtml);
@@ -146,9 +172,14 @@
 
             $('#moveRight').live('click', function () {
                 moveRightToleft();
-
             });
 
+            $('#moveRightAll').live('click', function () {
+                movAllRightToleft();
+            });
+           $('#moveLeftAll').live('click', function () {
+                moveAllLeftToRight();
+            });
         }
 
         // public methods
@@ -177,6 +208,22 @@
 
         }
 
+        var moveAllLeftToRight = function(){
+            $('#selectorTwo option').each(function (index) {
+                $(this).remove();
+                var that = $(this);
+                $(that).removeClass('selected');
+                $('#selectorOne').append(that); 
+            });
+        }
+        var movAllRightToleft = function () {
+            $('#selectorOne option').each(function (index) {
+                $(this).remove();
+                var that = $(this);
+                $(that).removeClass('selected');
+                $('#selectorTwo').append(that);
+            });
+        }
 
         var moveLeftToright = function () {
             $('#selectorTwo option').each(function (index) {
@@ -232,3 +279,4 @@
     }
 
 })(jQuery);
+
