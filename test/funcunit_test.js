@@ -7,15 +7,37 @@ module("index.html",{
     }
 })
 test('Labels are correct', function(){
-    S('#leftBox-label').exists(function(){
-        ok(S('#leftBox-label')==='Unassigned');
+    S('.leftBox-label').exists(function(){
+        ok(S('.leftBox-label').html()==='Unassigned','Should be unassigned');
     });
-      S('#rightBox-label').exists(function(){
-        ok(S('#rightBox-label')==='Assigned');
+      S('.rightBox-label').exists(function(){
+        ok(S('.rightBox-label').html()==='Assigned','Should be assigned');
     });
 });
 
+test('Move all buttons',function(){
+    S('#moveRightAll').exists().click();
+    S("#GetSelected").click(); 
+    S('#SelectedItems').exists(function(){
+        var count = S('#SelectedItems li').size();
+        ok(count===5,'Five items are selected:' + count);
+        var one = S('#SelectedItems li:first-child').html();
+        var two = S('#SelectedItems li:last-child').html();
+        ok(one==='4', 'First value should be 4:' + one);
+        ok(two==='3', 'Second value should be 3:' + two);
+    });
 
+    S('#moveLeftAll').exists().click();
+    S("#GetSelected").click(); 
+    S('#SelectedItems').exists(function(){
+        var count = S('#SelectedItems li').size();
+        ok(0===0,'No items are selected:' + count);
+      
+    });
+
+
+
+});
 
 
 test("Move stuff around and test", function(){
