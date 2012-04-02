@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery.moverboxes by kgaddy</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/kgaddy/Jquery.MoverBoxes">Fork On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/kgaddy/Jquery.MoverBoxes/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/kgaddy/Jquery.MoverBoxes/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Jquery.moverboxes</h1>
+          <p>Move data between two listboxes</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/kgaddy">kgaddy</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h3>jQuery Plugin: List Mover Box</h3>
+
+<p>This is a very basic list box.</p>
+
+<pre><code>          $(document).ready(function () {
+
+            //This array will hold the values in the unassigned listbox
+            var dataLeft = [];
+            dataLeft.push("1, Unassigned Value One");
+            dataLeft.push("2, Unassigned Value Two");
+            dataLeft.push("3, Unassigned Value Three");
+
+            //this array will contain the data in the assigned list
+            var dataRight = [];
+            dataRight.push("4, Assigned Value One");
+            dataRight.push("5, Assigned Value Two");
+
+            /*
+            //Options:
+            dataleft: The data in left side listbox
+            dataright: The data in right side listbox
+            size: the height of the boxes
+            */
+            $('#demo').MoverBoxes({ 'dataleft': dataLeft, 'dataright': dataRight, 'size': 20,'leftLabel':"Unassigned", 'rightLabel':"Assigned"  });
+
+
+
+            //get the selected values so we can update the database or whatever.
+            $('#GetSelected').click(function () {
+                //clear out old selected
+                $('#SelectedItems').html('');
+                var selectedData = $('#demo').data('MoverBoxes').SelectedValues();
+
+                //for each element in the array we will add to the listbox.
+                for (var i in selectedData) {
+                    var li_item = document.createElement("li");
+                    $(li_item).html(selectedData[i])
+                    $('#SelectedItems').append(li_item);
+                }
+
+            });
+
+            $('#GetUnSelected').click(function () {
+                //clear out old 
+                $('#SelectedItems').html('');
+                var selectedData = $('#demo').data('MoverBoxes').NotSelectedValues();
+
+                //for each element in the array we will add to the listbox.
+                for (var i in selectedData) {
+                    var li_item = document.createElement("li");
+                    $(li_item).html(selectedData[i])
+                    $('#SelectedItems').append(li_item);
+                }
+            });
+        });
+</code></pre>
+
+<h3>Documentation</h3>
+
+<h2>More demo here</h2>
+
+<ul>
+<li><a href="http://kgaddy.com/jqueryMoverBoxes/">http://kgaddy.com/jqueryMoverBoxes/</a>
+<table>
+<tr>
+<th>
+                Option
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+<tr>
+<td>
+                dataleft
+            </td>
+            <td>
+                Array: The items to be displayed in the left side listbox.
+            </td>
+        </tr>
+<tr>
+<td>
+                dataright
+            </td>
+            <td>
+                Array: The items to be displayed in the right side listbox.
+            </td>
+        </tr>
+<tr>
+<td>
+                size
+            </td>
+            <td>
+                int: controls the height of the boxes.
+            </td>
+        </tr>
+<tr>
+<td>
+                leftLabel
+            </td>
+            <td>
+                string: The label at the top of the left box.
+            </td>
+        </tr>
+<tr>
+<td>
+                rightLabel
+            </td>
+            <td>
+                string: The label at the top of the right box.
+            </td>
+        </tr>
+</table>
+</li>
+</ul>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
