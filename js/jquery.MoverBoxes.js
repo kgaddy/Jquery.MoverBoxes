@@ -1,3 +1,8 @@
+
+/*
+version : 1.1
+author: Kevin Gaddy
+*/
 (function ($) {
     $.MoverBoxes = function (element, options) {
         "use strict";
@@ -55,6 +60,7 @@
             var input = document.createElement("input");
             $(input).attr("type", "button");
             $(input).attr("value", ">");
+            $(input).addClass("btn btn-small");
             $(input).attr("id", "moveRight");
             var br = document.createElement("br");
             tableTDTwo.appendChild(input);
@@ -63,6 +69,7 @@
             var inputTwo = document.createElement("input");
             $(inputTwo).attr("type", "button");
             $(inputTwo).attr("value", "<");
+            $(inputTwo).addClass("btn btn-small");
             $(inputTwo).attr('id', 'moveLeft');
             tableTDTwo.appendChild(inputTwo);
             tableTR.appendChild(tableTDTwo);
@@ -73,6 +80,7 @@
             var inputTwoAll = document.createElement("input");
             $(inputTwoAll).attr("type", "button");
             $(inputTwoAll).attr("value", "<<");
+            $(inputTwoAll).addClass("btn btn-small");
             $(inputTwoAll).attr('id', 'moveLeftAll');
             tableTDTwo.appendChild(inputTwoAll);
 
@@ -82,6 +90,7 @@
             var inputThreeAll = document.createElement("input");
             $(inputThreeAll).attr("type", "button");
             $(inputThreeAll).attr("value", ">>");
+            $(inputThreeAll).addClass("btn btn-small");
             $(inputThreeAll).attr('id', 'moveRightAll');
             tableTDTwo.appendChild(inputThreeAll);
 
@@ -237,4 +246,3 @@
         });
     };
 })(jQuery);
-
