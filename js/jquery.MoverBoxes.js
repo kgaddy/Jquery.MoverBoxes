@@ -1,4 +1,3 @@
-
 /*
 version : 1.1
 author: Kevin Gaddy
@@ -163,6 +162,12 @@ author: Kevin Gaddy
             $('#moveLeftAll').live('click', function () {
                 moveAllLeftToRight();
             });
+        };
+        //function to reset values
+        plugin.resetValues = function (dataLeft, dataRight) {
+            options.dataleft = dataLeft;
+            options.dataright = dataRight;
+            plugin.init();
         };
         // public methods
         // these methods can be called like:
